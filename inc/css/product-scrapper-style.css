@@ -1,0 +1,124 @@
+.product-scrapper-class {
+	border: 1px solid #e6e6e6;
+	width: 100%;
+	max-width: 440px;
+	overflow: hidden;
+	margin: 0 auto 30px auto;
+	color: #23232b;
+	font-family: 'Open Sans', sans-serif;
+}
+
+.product-scrapper-class .img-col {
+	display: inline-block;
+	float: left;
+	width: 50%;
+	text-align: center;
+	padding: 15px;
+	display: flex;
+    justify-content: center;
+    flex-direction: column;
+    min-height: 224px;
+}
+
+.product-scrapper-class .img-col img {
+	transform: scale(1.05);
+    -webkit-transform: scale(1.05);
+    transition: all .15s ease-in;
+    -webkit-transition: all .15s ease-in;
+}
+
+.product-scrapper-class .img-col a {
+	box-shadow: none !important;
+}
+
+.product-scrapper-class .img-col img:hover {
+	transform: scale(1);
+	-webkit-transform: scale(1);
+}
+
+.product-scrapper-class .content-col {
+    float: left;
+    width: 50%;
+    padding: 15px;
+	display: flex;
+    justify-content: center;
+    flex-direction: column;
+    min-height: 224px;
+}
+
+.product-scrapper-class .content-col h3 {
+    font-size: 14px;
+    line-height: 1.2em;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.product-scrapper-class .content-col h3 a {
+	text-decoration: none;
+	box-shadow: none;
+}
+
+.product-scrapper-class .content-col h3 a:hover {
+	color: #257CD6;
+	-webkit-transition: all .15s ease-in;
+}
+
+.product-scrapper-class .content-col .btn {
+	display: inline-block;
+    background-color: #257cd6;
+    padding: 8px 10px;
+    border-radius: 2px;
+    border: 0 !important;
+    color: #ffffff;
+    font-weight: 700;
+    text-transform: uppercase;
+    width: 100%;
+    text-align: center;
+    box-shadow: none !important;
+    font-size: 13px;
+    margin-bottom: 0;
+    position: relative;
+}
+
+.product-scrapper-class .content-col .btn i {
+	position: absolute;
+    right: 4%;
+    top: 5px;
+	font-weight: 700;
+	font-size: 23px;
+}
+
+.product-scrapper-class .content-col .btn:hover {
+	-webkit-transition: all .15s ease-in;
+	background-color: #00B4FF;
+}
+
+.product-scrapper-class .price .free-shipping {
+	display: none;
+}
+
+.product-scrapper-class .price {
+	font-size: 20px;
+	font-weight: 700;
+	display: block;
+	line-height: 1.2em;
+	margin-bottom: 20px;
+}
+
+
+
+/* Landscape phone to portrait tablet */
+@media ( max-width: 767px ) {
+	.product-scrapper-class .img-col,
+	.product-scrapper-class .content-col {
+		width: 100%;
+		max-width: 100%;
+		min-height: auto;
+	}
+
+	.product-scrapper-class {
+		margin-left: auto;
+		margin-right: auto;
+		display: block;
+	}
+}
