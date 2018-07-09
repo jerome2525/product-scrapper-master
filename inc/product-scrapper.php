@@ -4,6 +4,10 @@
  * @package  Cta_Btn
  */
 
+if( class_exists('Product_Scrapper') ) {
+	return;
+}
+
 class Product_Scrapper {
 
 	public function __construct() {

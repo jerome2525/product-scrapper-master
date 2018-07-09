@@ -1,4 +1,7 @@
 <?php 
+if( class_exists('Product_Scrapper_Public') ) {
+	return;
+}
 class Product_Scrapper_Public {
 
 	public function __construct() {

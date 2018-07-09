@@ -2,6 +2,11 @@
 /**
  * Define the metabox and field configurations.
  */
+
+if( class_exists('Meta_Boxes') ) {
+	return;
+}
+
 class Meta_Boxes {
 
 	public function __construct() {

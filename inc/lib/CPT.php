@@ -10,6 +10,11 @@
  * @version 1.3.3
  * @license http://www.opensource.org/licenses/mit-license.html MIT License
  */
+
+if( class_exists('CPT') ) {
+	return;
+}
+
 class CPT {
 
 	/**
