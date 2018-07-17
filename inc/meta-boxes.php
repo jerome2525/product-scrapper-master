@@ -114,6 +114,36 @@ class Meta_Boxes {
 		) );
 
 		acf_add_local_field( array(
+			'key'          => 'store_logo',
+			'label'        => 'Store Logo',
+			'name'         => 'store_logo',
+			'type'         => 'url',
+			'parent'       => 'product_scrapper_fields',
+			'instructions' => 'Store logo external URL',
+			'required'     => 1,
+		) );
+
+		acf_add_local_field( array(
+			'key'          => 'store_url',
+			'label'        => 'Store Main URL',
+			'name'         => 'store_url',
+			'type'         => 'url',
+			'parent'       => 'product_scrapper_fields',
+			'instructions' => 'Store logo main URL',
+			'required'     => 1,
+		) );
+
+		acf_add_local_field( array(
+			'key'          => 'star_rating',
+			'label'        => 'Star Rating',
+			'name'         => 'star_rating',
+			'type'         => 'number',
+			'parent'       => 'product_scrapper_fields',
+			'instructions' => 'This is for the Star rating',
+			'required'     => 0,
+		) );
+
+		acf_add_local_field( array(
 			'key'          => 'developer_tab',
 			'label'        => 'For Developers',
 			'name'         => 'developer_tab',
@@ -130,6 +160,16 @@ class Meta_Boxes {
 			'parent'       => 'product_scrapper_fields',
 			'instructions' => 'This field is to get the price of the url based on website element,class and id.',
 			'required'     => 1,
+		) );
+
+		acf_add_local_field( array(
+			'key'          => 'old_price_elem_class',
+			'label'        => 'Old Price Element, ID, Class',
+			'name'         => 'old_price_elem_class',
+			'type'         => 'text',
+			'parent'       => 'product_scrapper_fields',
+			'instructions' => 'This field is to get the price of the url based on website element,class and id.',
+			'required'     => 0,
 		) );
 		// End CTA Button fields
 		
