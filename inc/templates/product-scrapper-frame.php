@@ -34,7 +34,7 @@
 
 			<?php } else { echo '<span>This Product has no Price!</span>'; } ?>
 
-			<a href="<?php echo $product_scrapper_url; ?>" class="btn" target="_blank">Check Now <i class="fa fa-angle-right" aria-hidden="true"></i></i></a>
+			<a href="<?php echo $product_scrapper_url; ?>" class="btn" target="_blank">SPRAWDŹ TERAZ <i class="fa fa-angle-right" aria-hidden="true"></i></i></a>
 		</div>
 
 	<?php }else { echo '<span>This Product was already removed!</span>'; } ?>	
@@ -52,8 +52,8 @@
 		    starWidth: "20px",
 		    multiColor: {
 		 
-		      "startColor": "#000000",
-		      "endColor"  : "#CC0000" 
+		      "startColor": "#FFDF00",
+		      "endColor"  : "#FFDF00" 
 		    }
 		  });
 		});

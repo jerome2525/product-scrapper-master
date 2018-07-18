@@ -9,6 +9,10 @@
 	position: relative;
 }
 
+.product-scrapper-class a {
+	text-decoration: none;
+}
+
 .product-scrapper-class .img-col {
 	display: inline-block;
 	float: left;
@@ -109,6 +113,8 @@
 .product-scrapper-class .price .old-price {
 	text-decoration: line-through;
     margin-left: 10px;
+	font-size: 15px;
+	font-weight: 400;
 }
 
 .product-scrapper-class .discount {
