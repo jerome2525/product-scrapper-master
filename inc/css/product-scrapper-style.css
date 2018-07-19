@@ -61,6 +61,7 @@
 .product-scrapper-class .content-col h3 a {
 	text-decoration: none;
 	box-shadow: none;
+	color: #000000;
 }
 
 .product-scrapper-class .content-col h3 a:hover {

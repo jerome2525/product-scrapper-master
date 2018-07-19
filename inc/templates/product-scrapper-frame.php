@@ -1,10 +1,14 @@
 <div class="product-scrapper-class">
-	<?php if (!empty( $imageurl && $title && $price && $store_logo && $store_url ) ) { ?>
+	<?php if (!empty( $imageurl && $title && $price && $store ) ) { ?>
 		<?php if (!empty( $price && $old_price ) ) { ?>
 			<span class="discount">- <?php echo $discount; ?> % </span>
 		<?php } ?>	
 		<div class="img-col same-height">
-			<?php if( !empty( $store_logo ) ) { ?>
+			<?php if( !empty( $store ) ) { ?>
+				<?php 
+					$store_logo = get_field('store_logo', $store ); 
+					$store_url = get_field('store_url', $store ); 
+				?>
 				<a href="<?php echo $store_url; ?>" target="_blank">
 					<img src="<?php echo $store_logo; ?>">
 				</a>
