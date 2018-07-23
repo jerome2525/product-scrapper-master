@@ -14,8 +14,6 @@ class Product_Scrapper_Public {
 	//Include admin and Public files
 	public function load_includes() {
 
-		include_once( plugin_dir_path( __DIR__ ) . 'lib/simple_html_dom.php' );
-
 	}
 
 	// Register Shortcodes 
@@ -59,6 +57,7 @@ class Product_Scrapper_Public {
 				$star_rating  = get_field('star_rating', $id );
 				include( plugin_dir_path( __DIR__ ) . 'templates/product-scrapper-frame.php');
 			}
+			echo get_post_meta( 115, 'product_status', true ); 
 		return ob_get_clean();
 	}
 

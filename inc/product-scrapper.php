@@ -21,7 +21,7 @@ class Product_Scrapper {
 
 	//Include admin and Public files
 	public function load_includes() {
-
+		include_once( plugin_dir_path( __FILE__ ) . 'lib/simple_html_dom.php' );
 		include_once( plugin_dir_path( __FILE__ ) . 'admin/product-scrapper-admin.php' );
 		include_once( plugin_dir_path( __FILE__ ) . 'public/product-scrapper-public.php' );
 
@@ -39,13 +39,13 @@ class Product_Scrapper {
 		//css
 		wp_enqueue_style( 'font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' );
 		wp_enqueue_style( 'google-font', 'https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i' );
-		wp_enqueue_style( 'star', 'https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css', array(), '1.2' );
-		wp_enqueue_style( 'product-scrapper-style', plugin_dir_url( __FILE__ ) . 'css/product-scrapper-style.css', array(), '1.1' );
+		wp_enqueue_style( 'star', 'https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css', array(), '1.4' );
+		wp_enqueue_style( 'product-scrapper-style', plugin_dir_url( __FILE__ ) . 'css/product-scrapper-style.css', array(), '1.4' );
 		
 		//js
-		wp_enqueue_script( 'star', 'https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js', array('jquery'), '1.1', true );
-		wp_enqueue_script( 'same-h', plugin_dir_url( __FILE__ ) . 'js/jquery.matchHeight.min.js', array('jquery'), '1.2', true );
-		wp_enqueue_script( 'product-scrapper-js', plugin_dir_url( __FILE__ ) . 'js/main.js', array('jquery'), '1.2', true );
+		wp_enqueue_script( 'star', 'https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js', array('jquery'), '1.4', true );
+		wp_enqueue_script( 'same-h', plugin_dir_url( __FILE__ ) . 'js/jquery.matchHeight.min.js', array('jquery'), '1.4', true );
+		wp_enqueue_script( 'product-scrapper-js', plugin_dir_url( __FILE__ ) . 'js/main.js', array('jquery'), '1.4', true );
 
 	}
 

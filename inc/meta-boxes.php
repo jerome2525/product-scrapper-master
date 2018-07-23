@@ -23,9 +23,6 @@ class Meta_Boxes {
 			require_once plugin_dir_path( __FILE__ ) . 'lib/acf/acf.php';
 		}
 
-		include_once( plugin_dir_path( __FILE__ ) . 'lib/simple_html_dom.php' );
-		include_once( plugin_dir_path( __FILE__ ) . 'lib/paginator.php' );
-
 	}
 
 	public function check_product_exist( $url ) {
@@ -45,6 +42,8 @@ class Meta_Boxes {
 		add_filter('acf/settings/path', array( $this, 'new_acf_settings_path') );
 		add_filter('acf/settings/dir', array( $this, 'new_acf_settings_dir') );
 		//add_filter('acf/settings/show_admin', '__return_false' );
+		add_action('acf/save_post', array( $this, 'product_acf_save_post' ) );
+		add_action('acf/save_post', array( $this, 'product_acf_save_option' ) );
 
 	}
 	 
@@ -263,7 +262,10 @@ class Meta_Boxes {
 				'menu_slug' 	=> 'product-status',
 				'capability'	=> 'edit_posts',
 				'redirect'		=> false,
-				'icon_url' => 'dashicons-chart-bar'
+				'icon_url' => 'dashicons-chart-bar',
+				'update_button'		=> __('Filter', 'acf'),
+				'updated_message'	=> __('Filtered Done!', 'acf'),
+				'redirect' => true
 			) );
 
 			acf_add_local_field_group( array (
@@ -287,6 +289,20 @@ class Meta_Boxes {
 			) );
 
 			acf_add_local_field( array(
+				'key'          	=> 'product_filter',
+				'label'        	=> 'Product Filter',
+				'name'         	=> 'product_filter',
+				'type'         	=> 'select',
+				'parent'       	=> 'product_status_group',
+				'required'		=> 0,
+				'choices' => array(
+					''	=> 'Show All',
+					'active'	=> 'Active',
+					'remove'	=> 'Removed'
+				)
+			) );
+
+			acf_add_local_field( array(
 				'key'          	=> 'status',
 				'label'        	=> '',
 				'name'         	=> 'status',
@@ -302,36 +318,73 @@ class Meta_Boxes {
 	public function show_product_status() {
 
 		global $wpdb;
-		$items_per_page = 10;
+		$items_per_page = 2;
+		//$status = $_GET['status'];
+		$status = get_field( 'product_filter','option');
 		$page = isset( $_GET['cpage'] ) ? abs( (int) $_GET['cpage'] ) : 1;
+
+		if( $status ) {
+			
+		}
+
 		$offset = ( $page * $items_per_page ) - $items_per_page;
-		$query = $wpdb->get_results("
-			SELECT ID, post_title 
-			FROM $wpdb->posts
-			WHERE post_status = 'publish' 
+		if( $status ) {
+
+			$query = $wpdb->get_results("
+				SELECT $wpdb->posts.* 
+				FROM $wpdb->posts, $wpdb->postmeta
+				WHERE $wpdb->posts.post_status = 'publish' 
+				AND $wpdb->posts.post_type = 'product-scrapper'
+				AND $wpdb->postmeta.post_id = $wpdb->posts.ID
+				AND $wpdb->postmeta.meta_key = 'product_status'
+				AND $wpdb->postmeta.meta_value = '$status'
+				LIMIT $offset, $items_per_page
+			");
+
+			$total = $wpdb->get_var( "
+				SELECT COUNT(*) 
+				FROM $wpdb->posts, $wpdb->postmeta
+				WHERE $wpdb->posts.post_status = 'publish' 
+				AND $wpdb->posts.post_type = 'product-scrapper'
+				AND $wpdb->postmeta.post_id = $wpdb->posts.ID
+				AND $wpdb->postmeta.meta_key = 'product_status'
+				AND $wpdb->postmeta.meta_value = '$status'" );
+
+		}
+		else {
+
+			$query = $wpdb->get_results("
+				SELECT ID, post_title 
+				FROM $wpdb->posts
+				WHERE post_status = 'publish' 
 				AND post_type = 'product-scrapper'
 				LIMIT $offset, $items_per_page
-		");
+			");
 
-		$total = $wpdb->get_var( "SELECT COUNT(*) FROM $wpdb->posts WHERE post_status = 'publish' 
+			$total = $wpdb->get_var( "SELECT COUNT(*) FROM $wpdb->posts WHERE post_status = 'publish' 
 				AND post_type = 'product-scrapper'" );
+
+		}
 
 		if( !empty( $query ) ) {
 			$val = '';
 			foreach ( $query as $value ) {
 				$title = $value->post_title;
 				$id = $value->ID;
-				$url = get_field( 'product_scrapper_url', $id ); 
-				if( $this->check_product_exist( $url ) ) {
+				$pstat = get_field( 'product_status', $id ); 
+				if( $pstat == 'active') {
 					$status = '<span style="color: green;">This Product is Active!</span>';
 				}
 				else {
-					$status = '<span style="color: red;">This Product was Removed!</span>';
+					$status = '<span style="color: red;">This Product has been Removed!</span>';
 				}
+
 				$val .= '<p>'.$title.': '.$status.'</p>';
+					
+				
 			}
 
-			$pages = new Paginator( $items_per_page,'cpage');
+			$pages = new Paginator( $items_per_page, 'cpage' );
 			$pages->set_total( $total );
 			$val .= $pages->page_links(); 
 		
@@ -342,5 +395,30 @@ class Meta_Boxes {
 		}
 
 	} 
+
+	public function product_acf_save_post( $post_id ) {
+
+	    $product_scrapper_url = get_field( 'product_scrapper_url' , $post_id );
+	    if( !empty( $product_scrapper_url ) ) {
+
+		    if( $this->check_product_exist( $product_scrapper_url ) ) {
+		    	$status = 'active';
+		    }
+		    else {
+		    	$status = 'remove';
+		    }
+
+		    update_post_meta( $post_id, 'product_status', $status );
+
+    	}
+
+	}
+
+	public function product_acf_save_option() {
+		$screen = get_current_screen();
+		if ( strpos( $screen->id, "product-status") == true ) {
+
+		}
+	}
 
 }

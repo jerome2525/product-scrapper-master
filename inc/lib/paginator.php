@@ -114,7 +114,13 @@ class Paginator{
         */
 	public function page_links($path='',$ext=null)
 	{
-		$wp_path = "admin.php?page=product-status&";
+		if( !empty( $_GET['status'] ) ) {
+			$stat = $_GET['status'];
+			$wp_path = "admin.php?page=product-status&status=$stat&";
+		}
+		else {
+			$wp_path = "admin.php?page=product-status&";
+		}
 	    $adjacents = "2";
 	    $prev = $this->_page - 1;
 	    $next = $this->_page + 1;

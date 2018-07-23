@@ -9,16 +9,26 @@ class Product_Scrapper_Admin {
 	public function __construct() {
 
 		$this->load_includes();
+
 		$this->register_post_type();
+
 		new Meta_Boxes;
+
 		$this->load_admin_assets();
 
+		$this->load_hooks();
 	}
 
 	public function load_includes() {
 
 		include_once( plugin_dir_path( __DIR__ ) . 'lib/CPT.php' );
+		include_once( plugin_dir_path( __DIR__ ) . 'lib/paginator.php' );
 		include_once( plugin_dir_path( __DIR__ ) . 'meta-boxes.php' );
+
+	}
+
+	public function load_hooks() {
+
 
 	}
 
