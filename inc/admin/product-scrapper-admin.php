@@ -12,7 +12,7 @@ class Product_Scrapper_Admin {
 
 		$this->register_post_type();
 
-		new Meta_Boxes;
+		new Ps_Meta_Boxes;
 
 		$this->load_admin_assets();
 

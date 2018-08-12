@@ -3,11 +3,11 @@
  * Define the metabox and field configurations.
  */
 
-if( class_exists('Meta_Boxes') ) {
+if( class_exists('Ps_Meta_Boxes') ) {
 	return;
 }
 
-class Meta_Boxes {
+class Ps_Meta_Boxes {
 
 	public function __construct() {
 
@@ -101,14 +101,6 @@ class Meta_Boxes {
 		) );
 
 		acf_add_local_field( array(
-			'key'          => 'main_tab',
-			'label'        => 'Main',
-			'name'         => 'main_tab',
-			'type'         => 'tab',
-			'parent'       => 'product_scrapper_fields',
-		) );
-
-		acf_add_local_field( array(
 			'key'          => 'product_scrapper_url',
 			'label'        => 'Product URL',
 			'name'         => 'product_scrapper_url',
@@ -159,37 +151,6 @@ class Meta_Boxes {
 			'post_type'		=> 'store',
 			'return_format' => 'id',
 		) );
-
-		acf_add_local_field( array(
-			'key'          => 'developer_tab',
-			'label'        => 'For Developers',
-			'name'         => 'developer_tab',
-			'type'         => 'tab',
-			'parent'       => 'product_scrapper_fields',
-			'instructions' => '',
-		) );
-
-		acf_add_local_field( array(
-			'key'          => 'price_elem_class',
-			'label'        => 'Price Element, ID, Class',
-			'name'         => 'price_elem_class',
-			'type'         => 'text',
-			'parent'       => 'product_scrapper_fields',
-			'instructions' => 'This field is to get the price of the url based on website element,class and id.',
-			'required'     => 1,
-		) );
-
-		acf_add_local_field( array(
-			'key'          => 'old_price_elem_class',
-			'label'        => 'Old Price Element, ID, Class',
-			'name'         => 'old_price_elem_class',
-			'type'         => 'text',
-			'parent'       => 'product_scrapper_fields',
-			'instructions' => 'This field is to get the price of the url based on website element,class and id.',
-			'required'     => 0,
-		) );
-
-		
 		
 		// End CTA Button fields
 
@@ -213,6 +174,14 @@ class Meta_Boxes {
 			'label_placement'       => 'top',
 			'instruction_placement' => 'label',
 			'hide_on_screen'        => array('the_content'),
+		) );
+
+		acf_add_local_field( array(
+			'key'          => 'main_tab',
+			'label'        => 'Main',
+			'name'         => 'main_tab',
+			'type'         => 'tab',
+			'parent'       => 'store_fields',
 		) );
 
 		acf_add_local_field(
@@ -251,6 +220,35 @@ class Meta_Boxes {
 			'parent'       	=> 'store_fields',
 			'instructions' 	=> 'Place the Store URL',
 			'required'		=> 1
+		) );
+
+		acf_add_local_field( array(
+			'key'          => 'developer_tab',
+			'label'        => 'For Developers',
+			'name'         => 'developer_tab',
+			'type'         => 'tab',
+			'parent'       => 'store_fields',
+			'instructions' => '',
+		) );
+
+		acf_add_local_field( array(
+			'key'          => 'price_elem_class',
+			'label'        => 'Price Element, ID, Class',
+			'name'         => 'price_elem_class',
+			'type'         => 'text',
+			'parent'       => 'store_fields',
+			'instructions' => 'This field is to get the price of the url based on website element,class and id.',
+			'required'     => 1,
+		) );
+
+		acf_add_local_field( array(
+			'key'          => 'old_price_elem_class',
+			'label'        => 'Old Price Element, ID, Class',
+			'name'         => 'old_price_elem_class',
+			'type'         => 'text',
+			'parent'       => 'store_fields',
+			'instructions' => 'This field is to get the price of the url based on website element,class and id.',
+			'required'     => 0,
 		) );
 
 

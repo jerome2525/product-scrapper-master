@@ -111,6 +111,11 @@
 	margin-bottom: 20px;
 }
 
+.product-scrapper-class .price span:nth-of-type(2) {
+	font-size: 12px;
+	vertical-align: top;
+}
+
 .product-scrapper-class .price .old-price {
 	text-decoration: line-through;
     margin-left: 10px;
